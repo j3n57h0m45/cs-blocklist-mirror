@@ -7,14 +7,16 @@ import (
 
 	"github.com/crowdsecurity/crowdsec/pkg/models"
 
+	"github.com/crowdsecurity/cs-blocklist-mirror/pkg/formatters/json"
 	"github.com/crowdsecurity/cs-blocklist-mirror/pkg/formatters/mikrotik"
 	"github.com/crowdsecurity/cs-blocklist-mirror/pkg/registry"
 )
 
 var ByName = map[string]func(w http.ResponseWriter, r *http.Request){
 	"plain_text": PlainText,
-	"mikrotik":   mikrotik.Format,
+	"plain_json": json.Format,
 	"f5":         F5,
+	"mikrotik":   mikrotik.Format,
 }
 
 func PlainText(w http.ResponseWriter, r *http.Request) {
